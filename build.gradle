@@ -1,0 +1,37 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'application'
+    id "org.gretty" version "4.0.1"
+    id 'war'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy-all:3.0.5'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation 'mysql:mysql-connector-java:8.0.29'
+ //   compileOnly 'javax.servlet:javax.servlet-api:3.0.1'
+}
+gretty {
+    httpPort = 8080
+    contextPath = '/RunApp'
+}
+test {
+    useJUnitPlatform()
+}
+application{
+    mainClassName("RunApp")
+}
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
